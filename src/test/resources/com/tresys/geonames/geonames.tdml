@@ -43,8 +43,7 @@ SOFTWARE.
   xmlns:owl="http://www.w3.org/2002/07/owl#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
-  defaultImplementations="daffodil">
+  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
 
   <tdml:parserTestCase name="test1" root="geoname"
     model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">

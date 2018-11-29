@@ -14,9 +14,6 @@ It is an interesting schema because it is intentionally trying to parse one
 format, but unparse to another. The unparsed output is text, that happens to be
 well-formed textual XML. 
 
-This schema requires a 2.3.0 version of Daffodil. It was created before 
-release of 2.3.0, using a development snapshot. 
-
 Remaining work to be done: A little ETL application needs to be built that 
 drives daffodil to parse the data record by record (using new message-streaming 
 API), aggregate 1000 at a time (say), and unparse into XML output data files 
