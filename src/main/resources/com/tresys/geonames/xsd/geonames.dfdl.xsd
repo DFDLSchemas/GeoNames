@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<!-- 
+Copyright (c) 2012-2015 Tresys Technology, LLC. All rights reserved.
+
+Developed by: Tresys Technology, LLC
+              http://www.tresys.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal with
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+ 1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimers.
+
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimers in the
+    documentation and/or other materials provided with the distribution.
+
+ 3. Neither the names of Tresys Technology, nor the names of its contributors
+    may be used to endorse or promote products derived from this Software
+    without specific prior written permission.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
+SOFTWARE.
+ -->
+
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  xmlns:fn="http://www.w3.org/2005/xpath-functions"
+  xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" 
+  xmlns:geo="http://www.geonames.org/xml"
+  xmlns:tns="http://www.geonames.org/xml"
+  targetNamespace="http://www.geonames.org/xml" 
+  elementFormDefault="unqualified"
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:dcterms="http://purl.org/dc/terms/" 
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:gn="http://www.geonames.org/ontology#" 
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+
+  <xs:include schemaLocation="org/apache/daffodil/xsd/DFDLGeneralFormat.dfdl.xsd" />
+
+  <xs:annotation>
+    <xs:appinfo source="http://www.ogf.org/dfdl/">
+      <dfdl:defineFormat name="geonamesBase">
+        <dfdl:format ref="tns:GeneralFormat" representation="text" lengthKind="delimited"
+          encoding="UTF-8" />
+      </dfdl:defineFormat>
+      <dfdl:format ref="geo:geonamesBase" />
+    </xs:appinfo>
+  </xs:annotation>
+
+  <xs:element name="geonames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence dfdl:hiddenGroupRef="tns:docElementStartGroup"/>
+        <xs:element name="geoname" type="tns:geonameType" minOccurs="0" maxOccurs="unbounded"
+          dfdl:occursCountKind="implicit" />
+        <xs:sequence dfdl:hiddenGroupRef="tns:docElementEndGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="docElementStartGroup">
+    <xs:sequence>
+      <xs:element name="docStart" type="xs:string" dfdl:lengthKind="pattern"
+        dfdl:lengthPattern=".{0,0}">
+        <xs:annotation>
+          <xs:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:element>
+              <dfdl:property name="outputValueCalc"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<geo:geonames
+  xmlns:geo="http://www.geonames.org/xml" 
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:dcterms="http://purl.org/dc/terms/" 
+  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
+  xmlns:gn="http://www.geonames.org/ontology#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#" 
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+]]></dfdl:property>
+            </dfdl:element>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group> 
+  <!-- 
+  
+  
+  
+   -->
+  <xs:group name="docElementEndGroup">
+    <xs:sequence>
+          <xs:element name="docEnd" type="xs:string" dfdl:lengthKind="pattern"
+        dfdl:lengthPattern=".{0,0}">
+        <xs:annotation>
+          <xs:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:element>
+              <dfdl:property name="outputValueCalc"><![CDATA[
+</geo:geonames>
+]]></dfdl:property>
+            </dfdl:element>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:element name="geoname" type="tns:geonameType" />
+
+  <xs:complexType name="geonameType">
+    <xs:group ref="tns:geonameGroup" />
+  </xs:complexType>
+
+  <xs:group name="geonameGroup">
+    <xs:sequence>
+      <xs:element name="graphURI" type="xs:string" dfdl:initiator="%WSP*;" 
+        dfdl:lengthKind="pattern"
+        dfdl:lengthPattern="[\s\S]*?(?=(\r\n|\n))"
+        dfdl:outputValueCalc="{ '' }"/>
+      <xs:sequence dfdl:hiddenGroupRef="tns:lineEndGroup"/>
+      <xs:sequence>
+        <xs:sequence dfdl:hiddenGroupRef="tns:xmlSlugLineGroup"/>
+        <xs:sequence>
+          <xs:annotation>
+            <xs:appinfo source="http://www.ogf.org/dfdl/">
+              <dfdl:sequence>
+                <dfdl:property name="initiator"><![CDATA[<rdf:RDF%WSP*;]]></dfdl:property>
+                <dfdl:property name="terminator"><![CDATA[</rdf:RDF>]]></dfdl:property>
+              </dfdl:sequence>
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence dfdl:hiddenGroupRef="tns:nsPrefixDefsGroup" />
+          <xs:element name="RDFLine" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+          <xs:element name="RDF" type="xs:string" dfdl:lengthKind="pattern">
+            <xs:annotation>
+              <xs:appinfo source="http://www.ogf.org/dfdl/">
+                <dfdl:element>
+                  <dfdl:property name="lengthPattern"><![CDATA[[\s\S]+?(?=(\r\n|\n|\<\/rdf\:RDF\>))]]></dfdl:property>
+                </dfdl:element>
+                <dfdl:discriminator>{ fn:string-length(.) gt 0 }</dfdl:discriminator>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:element>
+          <xs:sequence dfdl:hiddenGroupRef="tns:lineEndGroup"/>
+          </xs:sequence>
+          </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:group name="xmlSlugLineGroup">
+      <xs:sequence>
+      <xs:element name="xmlSlugLine" type="xs:string"
+        dfdl:lengthKind="pattern"
+        dfdl:lengthPattern="&lt;\?xml[\s\S]+?\?&gt;(\r\n|\n)"
+        dfdl:outputValueCalc="{ '' }"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:group name="lineEndGroup">
+    <xs:sequence>
+      <xs:element name="RDFLineEnd" type="xs:string" dfdl:lengthKind="pattern"
+              dfdl:lengthPattern="\r\n|\n" dfdl:outputValueCalc="{ '' }"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:group name="nsPrefixDefsGroup">
+    <xs:sequence>
+      <xs:element name="prefixDefs" type="xs:string"
+        dfdl:lengthKind="pattern"
+        dfdl:lengthPattern="xmlns[\s\S]+?(?=&gt;)"
+        dfdl:terminator="&gt;"
+        dfdl:outputValueCalc="{ '' }"/>
+    </xs:sequence>
+  </xs:group>
+
+</xs:schema>
