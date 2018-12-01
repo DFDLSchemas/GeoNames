@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 
-<!-- 
-Copyright (c) 2012-2015 Tresys Technology, LLC. All rights reserved.
+<!--<![CDATA[ 
+Copyright (c) 2012-2018 Tresys Technology, LLC. All rights reserved.
 
 Developed by: Tresys Technology, LLC
               http://www.tresys.com
@@ -31,24 +31,22 @@ CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
 SOFTWARE.
- -->
+]]>-->
 
-<xs:schema 
-  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-  xmlns:fn="http://www.w3.org/2005/xpath-functions"
-  xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" 
-  xmlns:geo="http://www.geonames.org/xml"
-  xmlns:tns="http://www.geonames.org/xml"
-  targetNamespace="http://www.geonames.org/xml" 
-  elementFormDefault="unqualified"
-  xmlns:cc="http://creativecommons.org/ns#"
-  xmlns:dcterms="http://purl.org/dc/terms/" 
-  xmlns:foaf="http://xmlns.com/foaf/0.1/"
-  xmlns:gn="http://www.geonames.org/ontology#" 
-  xmlns:owl="http://www.w3.org/2002/07/owl#"
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
+  xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:geo="http://www.geonames.org/xml"
+  xmlns:tns="http://www.geonames.org/xml" targetNamespace="http://www.geonames.org/xml"
+  elementFormDefault="unqualified">
+
+  <!--<![CDATA[ 
+    Parses the GeoNames data set. www.geonames.org This schema parses/unparses the geonames 
+    data. This data contains a URL followed by a RDF graph expressed as a chunk of XML which has been 
+    line-wrapped. This XML is "clobbered" by that process and so cannot be read by a normal XML parser. 
+    This schema doesn't reconstruct the XML you want. It just reliably parses the data. From this it's 
+    pretty easy to assemble the XML you want. This example illustrates how to use the dfdl:property element 
+    form of DFDL property syntax so as to not have to escape XML-like syntax when it appears in DFDL 
+    schemas.
+  ]]>-->
 
   <xs:include schemaLocation="org/apache/daffodil/xsd/DFDLGeneralFormat.dfdl.xsd" />
 
@@ -56,7 +54,7 @@ SOFTWARE.
     <xs:appinfo source="http://www.ogf.org/dfdl/">
       <dfdl:defineFormat name="geonamesBase">
         <dfdl:format ref="tns:GeneralFormat" representation="text" lengthKind="delimited"
-          encoding="UTF-8" />
+          encoding="UTF-8" encodingErrorPolicy="error"/>
       </dfdl:defineFormat>
       <dfdl:format ref="geo:geonamesBase" />
     </xs:appinfo>
@@ -65,60 +63,10 @@ SOFTWARE.
   <xs:element name="geonames">
     <xs:complexType>
       <xs:sequence>
-        <xs:sequence dfdl:hiddenGroupRef="tns:docElementStartGroup"/>
-        <xs:element name="geoname" type="tns:geonameType" minOccurs="0" maxOccurs="unbounded"
-          dfdl:occursCountKind="implicit" />
-        <xs:sequence dfdl:hiddenGroupRef="tns:docElementEndGroup"/>
+        <xs:element name="geoname" type="tns:geonameType" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-
-  <xs:group name="docElementStartGroup">
-    <xs:sequence>
-      <xs:element name="docStart" type="xs:string" dfdl:lengthKind="pattern"
-        dfdl:lengthPattern=".{0,0}">
-        <xs:annotation>
-          <xs:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:element>
-              <dfdl:property name="outputValueCalc"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<geo:geonames
-  xmlns:geo="http://www.geonames.org/xml" 
-  xmlns:cc="http://creativecommons.org/ns#"
-  xmlns:dcterms="http://purl.org/dc/terms/" 
-  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
-  xmlns:gn="http://www.geonames.org/ontology#"
-  xmlns:owl="http://www.w3.org/2002/07/owl#" 
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-]]></dfdl:property>
-            </dfdl:element>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:group> 
-  <!-- 
-  
-  
-  
-   -->
-  <xs:group name="docElementEndGroup">
-    <xs:sequence>
-          <xs:element name="docEnd" type="xs:string" dfdl:lengthKind="pattern"
-        dfdl:lengthPattern=".{0,0}">
-        <xs:annotation>
-          <xs:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:element>
-              <dfdl:property name="outputValueCalc"><![CDATA[
-</geo:geonames>
-]]></dfdl:property>
-            </dfdl:element>
-          </xs:appinfo>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:group>
 
   <xs:element name="geoname" type="tns:geonameType" />
 
@@ -126,70 +74,79 @@ SOFTWARE.
     <xs:group ref="tns:geonameGroup" />
   </xs:complexType>
 
+  <!--<![CDATA[
+    In parsing this data. We are breaking out the parts that are desirable
+    from the parts you probably will want to eliminate/skip if reformatting or
+    processing the data.
+  ]]>-->
   <xs:group name="geonameGroup">
     <xs:sequence>
-      <xs:element name="graphURI" type="xs:string" dfdl:initiator="%WSP*;" 
-        dfdl:lengthKind="pattern"
-        dfdl:lengthPattern="[\s\S]*?(?=(\r\n|\n))"
-        dfdl:outputValueCalc="{ '' }"/>
-      <xs:sequence dfdl:hiddenGroupRef="tns:lineEndGroup"/>
+      <!--<![CDATA[
+         The data starts with a URI/URL. It appears to be redundant with 
+         part of the following XML fragment. Though that may or may not
+         always be true. (There's too many gigs of data to check to see.)
+      ]]>-->
+      <xs:element name="graphURI" type="xs:string"
+        dfdl:terminator="%NL;" 
+        dfdl:textTrimKind="padChar" 
+        dfdl:textStringPadCharacter="%SP;"
+        dfdl:textStringJustification="center"/>
       <xs:sequence>
-        <xs:sequence dfdl:hiddenGroupRef="tns:xmlSlugLineGroup"/>
+        <!--<![CDATA[
+          This XML Slug line is next. Not going to want this in any cleaned up format.
+        ]]>-->
+        <xs:element name="xmlSlugLine" type="xs:string">
+          <xs:annotation>
+            <xs:appinfo source="http://www.ogf.org/dfdl/">
+              <dfdl:element>
+                <dfdl:property name="initiator"><![CDATA[<?xml%WSP*;]]></dfdl:property>
+                <dfdl:property name="terminator"><![CDATA[?>%NL;]]></dfdl:property>
+              </dfdl:element>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <!--<![CDATA[
+          The guts is this quasi-XML element, which was chopped by some line-length
+          limitation. It was chopped without regard to the breaks being in the 
+          middle of element or attribute values, escape characters or anything else
+          that constraints XML syntax. So this data looks like XML, but it isn't
+          XML. We parse it into a bunch of text lines that if concatenated will
+          in fact be XML again.  
+        ]]>-->
         <xs:sequence>
           <xs:annotation>
             <xs:appinfo source="http://www.ogf.org/dfdl/">
               <dfdl:sequence>
-                <dfdl:property name="initiator"><![CDATA[<rdf:RDF%WSP*;]]></dfdl:property>
-                <dfdl:property name="terminator"><![CDATA[</rdf:RDF>]]></dfdl:property>
+                <dfdl:property name="initiator"><![CDATA[<rdf:RDF%WSP+;]]></dfdl:property>
               </dfdl:sequence>
             </xs:appinfo>
           </xs:annotation>
-          <xs:sequence dfdl:hiddenGroupRef="tns:nsPrefixDefsGroup" />
-          <xs:element name="RDFLine" maxOccurs="unbounded">
-            <xs:complexType>
-              <xs:sequence>
-          <xs:element name="RDF" type="xs:string" dfdl:lengthKind="pattern">
+          <xs:element name="prefixDefs" type="xs:string">
+            <!--<![CDATA[
+              We carve off these prefix defs because you almost certainly don't
+              want these repeated on every single record like this. They could 
+              go on a surrounding element, and appear exactly once.
+            ]]>-->
             <xs:annotation>
               <xs:appinfo source="http://www.ogf.org/dfdl/">
                 <dfdl:element>
-                  <dfdl:property name="lengthPattern"><![CDATA[[\s\S]+?(?=(\r\n|\n|\<\/rdf\:RDF\>))]]></dfdl:property>
+                  <dfdl:property name="terminator"><![CDATA[>]]></dfdl:property>
                 </dfdl:element>
-                <dfdl:discriminator>{ fn:string-length(.) gt 0 }</dfdl:discriminator>
               </xs:appinfo>
             </xs:annotation>
           </xs:element>
-          <xs:sequence dfdl:hiddenGroupRef="tns:lineEndGroup"/>
+          <xs:sequence dfdl:separator="%NL;">
+            <xs:annotation>
+            <xs:appinfo source="http://www.ogf.org/dfdl/">
+              <dfdl:sequence>
+                <dfdl:property name="terminator"><![CDATA[</rdf:RDF>]]></dfdl:property>
+              </dfdl:sequence>
+            </xs:appinfo>
+            </xs:annotation>
+            <xs:element name="RDFLine" type="xs:string" maxOccurs="unbounded" />
           </xs:sequence>
-          </xs:complexType>
-          </xs:element>
         </xs:sequence>
       </xs:sequence>
-    </xs:sequence>
-  </xs:group>
-  
-  <xs:group name="xmlSlugLineGroup">
-      <xs:sequence>
-      <xs:element name="xmlSlugLine" type="xs:string"
-        dfdl:lengthKind="pattern"
-        dfdl:lengthPattern="&lt;\?xml[\s\S]+?\?&gt;(\r\n|\n)"
-        dfdl:outputValueCalc="{ '' }"/>
-    </xs:sequence>
-  </xs:group>
-  
-  <xs:group name="lineEndGroup">
-    <xs:sequence>
-      <xs:element name="RDFLineEnd" type="xs:string" dfdl:lengthKind="pattern"
-              dfdl:lengthPattern="\r\n|\n" dfdl:outputValueCalc="{ '' }"/>
-    </xs:sequence>
-  </xs:group>
-  
-  <xs:group name="nsPrefixDefsGroup">
-    <xs:sequence>
-      <xs:element name="prefixDefs" type="xs:string"
-        dfdl:lengthKind="pattern"
-        dfdl:lengthPattern="xmlns[\s\S]+?(?=&gt;)"
-        dfdl:terminator="&gt;"
-        dfdl:outputValueCalc="{ '' }"/>
     </xs:sequence>
   </xs:group>
 

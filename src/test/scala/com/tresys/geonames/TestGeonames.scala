@@ -47,9 +47,5 @@ class TestGeonames {
   import TestGeonames._
 
   @Test def test1() { runner.runOneTest("test1") }
-  @Test def test1Unparse() { runner.runOneTest("test1unparse") }
-  @Test def test2Unparse() { runner.runOneTest("test2unparse") }
-  @Test def testWholeDocUnparse1() { runner.runOneTest("testWholeDocUnparse1") }
-  @Test def testWholeDocUnparse2() { runner.runOneTest("testWholeDocUnparse2") }
 
 }

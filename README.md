@@ -1,25 +1,29 @@
 # GeoNames
 
-GeoNames is a big, useful data set found at www.geonames.org.
+GeoNames is a big and useful data set found at www.geonames.org.
 
 The file is quite large. Many gigabytes when uncompressed.
 
 It's not an easy-to-use format, and the single giant file is
-problematic.
+problematic. The format contains a quasi-XML fragment of data in each
+record of data. This can't be parsed with an XML parser unless it is first
+parsed and then reassembled into viable XML. 
 
-This module is a DFDL schema that parses this data, and that can create
-a rational XML representation. 
+This module is a DFDL schema that parses this data, and that enables one to
+reconstruct a "real XML" representation.
 
-It is an interesting schema because it is intentionally trying to parse one
-format, but unparse to another. The unparsed output is text, that happens to be
-well-formed textual XML. 
+This schema is portable to both IBM DFDL, and Daffodil. 
 
-Remaining work to be done: A little ETL application needs to be built that 
-drives daffodil to parse the data record by record (using new message-streaming 
-API), aggregate 1000 at a time (say), and unparse into XML output data files 
-(many of them). If we want to group or sort the data by say, parentFeature 
-resource URI, then an Apache Spark job may be ideal for this ETL work. 
- 
-A code examples of daffodil with Apache Spark is at:
+Note that if you parse, then unparse this data, you'll get out again the exact
+same format you started from. You don't want to unparse this. You want to write
+out something different. 
 
-https://github.com/OpenDFDL/daffodil-spark
+A suggested approach: one should parse this data record by record, and bunch up 
+into files of maybe 10,000 records, and make "real XML" documents of each of them, 
+thereby converting this data from a single giant file of quasi-XML things into
+a large collection of smaller "true XML" files. The files could still be compressed
+individually to make the whole set smaller. 
+
+
+
+

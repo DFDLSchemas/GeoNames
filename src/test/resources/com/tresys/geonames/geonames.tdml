@@ -44,15 +44,19 @@ SOFTWARE.
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
+  <!-- 
+    To enable cross testing with IBM DFDL, add this line to the attributes above
+    
+    defaultImplementations="ibm daffodil"
+   -->
 
   <tdml:parserTestCase name="test1" root="geoname"
-    model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">
+    model="com/tresys/geonames/xsd/geonames.dfdl.xsd">
     <tdml:document><![CDATA[http://sws.geonames.org/3/
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gn="http://www.geo
 names.org/ontology#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:wgs84_pos="http://www.w3.org/2003/
-01/geo/wgs84_pos#"
-                       ><gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S
+01/geo/wgs84_pos#"><gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S
 ūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ont
 ology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCoun
 try rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:reso
@@ -60,146 +64,19 @@ urce="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature></rdf:RDF>]]><
   <tdml:infoset>
     <tdml:dfdlInfoset>
       <geo:geoname>
-        <graphURI>http://sws.geonames.org/3/</graphURI>
-          <RDFLine>
-            <RDF><![CDATA[<gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ont]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCoun]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[try rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:reso]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[urce="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature>]]></RDF>
-          </RDFLine>
-        </geo:geoname>
+      <graphURI>http://sws.geonames.org/3/</graphURI>
+      <xmlSlugLine><![CDATA[version="1.0" encoding="UTF-8" standalone="no"]]></xmlSlugLine>
+      <prefixDefs><![CDATA[xmlns:cc="http://creativecommons.org/ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:gn="http://www.geo
+names.org/ontology#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:wgs84_pos="http://www.w3.org/2003/
+01/geo/wgs84_pos#"]]></prefixDefs>
+       <RDFLine><![CDATA[<gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S]]></RDFLine>
+       <RDFLine><![CDATA[ūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ont]]></RDFLine>
+       <RDFLine><![CDATA[ology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCoun]]></RDFLine>
+       <RDFLine><![CDATA[try rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:reso]]></RDFLine>
+       <RDFLine><![CDATA[urce="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature>]]></RDFLine>
+       </geo:geoname>
     </tdml:dfdlInfoset>
   </tdml:infoset>
-  </tdml:parserTestCase>
-  
-  <tdml:unparserTestCase name="test1unparse" root="geoname"
-      model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">
-    <tdml:document><![CDATA[<rdf:RDF><gn:Feature>Zamīn Sūkhteh</gn:Feature></rdf:RDF>]]></tdml:document>
-  <tdml:infoset>
-    <tdml:dfdlInfoset>
-      <geo:geoname>
-        <graphURI>http://sws.geonames.org/3/</graphURI>
-          <RDFLine>
-            <RDF><![CDATA[<gn:Feature>Zamīn S]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ūkhteh</gn:Feature>]]></RDF>
-          </RDFLine>
-        </geo:geoname>
-    </tdml:dfdlInfoset>
-  </tdml:infoset>
-  </tdml:unparserTestCase>
-
-  <tdml:unparserTestCase name="test2unparse" root="geoname"
-    model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">
-    <tdml:document><![CDATA[<rdf:RDF><gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn Sūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ontology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCountry rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:resource="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature></rdf:RDF>]]></tdml:document>
-    <tdml:infoset>
-      <tdml:dfdlInfoset>
-        <geo:geoname>
-          <graphURI>http://sws.geonames.org/3/</graphURI>
-          <RDFLine>
-            <RDF><![CDATA[<gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ont]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCoun]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[try rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:reso]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[urce="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature>]]></RDF>
-          </RDFLine>
-        </geo:geoname>
-      </tdml:dfdlInfoset>
-    </tdml:infoset>
-  </tdml:unparserTestCase>
-
-  <tdml:unparserTestCase name="testWholeDocUnparse1" root="geonames"
-    model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">
-    <tdml:document><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<geo:geonames
-  xmlns:geo="http://www.geonames.org/xml" 
-  xmlns:cc="http://creativecommons.org/ns#"
-  xmlns:dcterms="http://purl.org/dc/terms/" 
-  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
-  xmlns:gn="http://www.geonames.org/ontology#"
-  xmlns:owl="http://www.w3.org/2002/07/owl#" 
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-<rdf:RDF><gn:Feature>Zamīn Sūkhteh</gn:Feature></rdf:RDF>
-</geo:geonames>
-]]></tdml:document>
-    <tdml:infoset>
-      <tdml:dfdlInfoset>
-        <geo:geonames>
-          <geoname>
-            <graphURI>http://sws.geonames.org/3/</graphURI>
-            <RDFLine>
-              <RDF><![CDATA[<gn:Feature>Zamīn S]]></RDF>
-            </RDFLine>
-            <RDFLine>
-              <RDF><![CDATA[ūkhteh</gn:Feature>]]></RDF>
-            </RDFLine>
-          </geoname>
-        </geo:geonames>
-      </tdml:dfdlInfoset>
-    </tdml:infoset>
-  </tdml:unparserTestCase>
- 
- 
- <tdml:unparserTestCase name="testWholeDocUnparse2" root="geonames"
-    model="com/tresys/geonames/xsd/geonames.dfdl.xsd" roundTrip="none">
-    <tdml:document><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<geo:geonames
-  xmlns:geo="http://www.geonames.org/xml" 
-  xmlns:cc="http://creativecommons.org/ns#"
-  xmlns:dcterms="http://purl.org/dc/terms/" 
-  xmlns:foaf="http://xmlns.com/foaf/0.1/" 
-  xmlns:gn="http://www.geonames.org/ontology#"
-  xmlns:owl="http://www.w3.org/2002/07/owl#" 
-  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-  xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#">
-<rdf:RDF><gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn Sūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ontology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCountry rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:resource="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature></rdf:RDF>
-</geo:geonames>
-]]></tdml:document>
-    <tdml:infoset>
-      <tdml:dfdlInfoset>
-        <geo:geonames>
-          <geoname>
-          <graphURI>http://sws.geonames.org/3/</graphURI>
-          <RDFLine>
-            <RDF><![CDATA[<gn:Feature rdf:about="http://sws.geonames.org/3/"><rdfs:isDefinedBy rdf:resource="http://sws.geonames.org/3/about.rdf"/><gn:name>Zamīn Sūkhteh</gn:name><gn:alternateName xml:lang="fa">Zamīn S]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ūkhteh</gn:alternateName><gn:alternateName xml:lang="fa">زمين سوخته</gn:alternateName><gn:featureClass rdf:resource="http://www.geonames.org/ontology#S"/><gn:featureCode rdf:resource="http://www.geonames.org/ont]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[ology#S.CRRL"/><gn:countryCode>IR</gn:countryCode><wgs84_pos:lat>32.45831</wgs84_pos:lat><wgs84_pos:long>48.96335</wgs84_pos:long><gn:parentFeature rdf:resource="http://sws.geonames.org/3202991/"/><gn:parentCoun]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[try rdf:resource="http://sws.geonames.org/130758/"/><gn:parentADM1 rdf:resource="http://sws.geonames.org/127082/"/><gn:nearbyFeatures rdf:resource="http://sws.geonames.org/3/nearby.rdf"/><gn:locationMap rdf:reso]]></RDF>
-          </RDFLine>
-          <RDFLine>
-            <RDF><![CDATA[urce="http://www.geonames.org/3/zamin-sukhteh.html"/></gn:Feature>]]></RDF>
-          </RDFLine>
-          </geoname>
-        </geo:geonames>
-      </tdml:dfdlInfoset>
-    </tdml:infoset>
-  </tdml:unparserTestCase>
+</tdml:parserTestCase>
   
 </tdml:testSuite>
