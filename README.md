@@ -18,11 +18,11 @@ Note that if you parse, then unparse this data, you'll get out again the exact
 same format you started from. You don't want to unparse this. You want to write
 out something different. 
 
-A suggested approach: one should parse this data record by record, and bunch up 
-into files of maybe 10,000 records, and make "real XML" documents of each of them, 
-thereby converting this data from a single giant file of quasi-XML things into
-a large collection of smaller "true XML" files. The files could still be compressed
-individually to make the whole set smaller. 
+See https://github.com/OpenDFDL/daffodil-spark for code that actually converts geonames
+data into useful XML files. Uses apache spark to operate on the data after parsing it
+with daffodil. The assembly into XML, and creation of a multi-file compressed-XML dataset
+is all parallelized by spark.
+
 
 
 
