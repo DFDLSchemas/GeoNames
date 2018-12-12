@@ -63,7 +63,7 @@ SOFTWARE.
   <xs:element name="geonames">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="geoname" type="tns:geonameType" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="geoname" type="tns:geonameType" minOccurs="1" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -100,7 +100,7 @@ SOFTWARE.
             <xs:appinfo source="http://www.ogf.org/dfdl/">
               <dfdl:element>
                 <dfdl:property name="initiator"><![CDATA[<?xml%WSP*;]]></dfdl:property>
-                <dfdl:property name="terminator"><![CDATA[?>%NL;]]></dfdl:property>
+                <dfdl:property name="terminator"><![CDATA[?>%WSP*;]]></dfdl:property>
               </dfdl:element>
             </xs:appinfo>
           </xs:annotation>
@@ -139,7 +139,7 @@ SOFTWARE.
             <xs:annotation>
             <xs:appinfo source="http://www.ogf.org/dfdl/">
               <dfdl:sequence>
-                <dfdl:property name="terminator"><![CDATA[</rdf:RDF>]]></dfdl:property>
+                <dfdl:property name="terminator"><![CDATA[</rdf:RDF>%WSP*;]]></dfdl:property>
               </dfdl:sequence>
             </xs:appinfo>
             </xs:annotation>

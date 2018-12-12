@@ -47,5 +47,7 @@ class TestGeonames {
   import TestGeonames._
 
   @Test def test1() { runner.runOneTest("test1") }
+  @Test def test2() { runner.runOneTest("test2") }
+  @Test def test3() { runner.runOneTest("test3") }
 
 }
