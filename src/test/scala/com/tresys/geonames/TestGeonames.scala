@@ -39,15 +39,15 @@ import org.junit.AfterClass
 object TestGeonames {
   lazy val runner = Runner("/com/tresys/geonames/", "geonames.tdml")
 
-  @AfterClass def shutdown: Unit = { runner.reset }
+  @AfterClass def shutdown: Unit = { runner.reset() }
 
 }
 
 class TestGeonames {
   import TestGeonames._
 
-  @Test def test1() { runner.runOneTest("test1") }
-  @Test def test2() { runner.runOneTest("test2") }
-  @Test def test3() { runner.runOneTest("test3") }
+  @Test def test1() = { runner.runOneTest("test1") }
+  @Test def test2() = { runner.runOneTest("test2") }
+  @Test def test3() = { runner.runOneTest("test3") }
 
 }
